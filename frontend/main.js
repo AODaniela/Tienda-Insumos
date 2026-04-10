@@ -32,16 +32,45 @@ async function fetchProducts() {
         products.forEach((p, index) => {
             const card = document.createElement('div');
             card.className = 'product-card animate-up';
-            card.style.animationDelay = `${index * 0.1}s`; // Efecto de cascada sutil al aparecer
+            card.style.animationDelay = `${index * 0.1}s`;
+
+            // Formateo de precio a COP (ej. 2700 -> $2.700)
+            const formattedPrice = new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0
+            }).format(p.precio || 0);
+
+            // Lógica para el selector de color en Hilos
+            let colorDisplay = `<p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:1rem;">Color: ${p.color || 'Varios'}</p>`;
             
+            if (p.categoria === 'Hilos') {
+                colorDisplay = `
+                    <div class="color-selector">
+                        <label style="font-size: 0.8rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem;">Seleccionar Color:</label>
+                        <select class="color-dropdown" onchange="handleColorChange(this, '${p.idReferencia}')">
+                            <option value="Blanco">Blanco</option>
+                            <option value="Negro">Negro</option>
+                            <option value="Rojo">Rojo</option>
+                            <option value="Azul">Azul</option>
+                            <option value="Amarillo">Amarillo</option>
+                            <option value="Otro">Otro (Indicar número)</option>
+                        </select>
+                        <input type="text" id="custom-color-${p.idReferencia}" class="custom-color-input" placeholder="Indicar número de hilo" style="display: none;">
+                    </div>
+                `;
+            }
+
             card.innerHTML = `
-                <div class="product-img-placeholder">🧵</div>
+                <div class="product-img-container">
+                    <img src="${p.imagen || 'img/placeholder.png'}" alt="${p.nombre}" class="product-img">
+                </div>
                 <div class="product-info">
                     <span class="cat">${p.categoria || 'Textil Premium'}</span>
                     <h3>${p.nombre || 'Insumo sin nombre'}</h3>
-                    <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:1rem;">Color: ${p.color || 'Varios'}</p>
+                    ${colorDisplay}
                     <div class="product-footer">
-                        <span class="price">$${p.precio || '0.00'}</span>
+                        <span class="price">${formattedPrice}</span>
                         <button class="btn-add">Agregar al 🛒</button>
                     </div>
                 </div>
@@ -50,12 +79,17 @@ async function fetchProducts() {
         });
     } catch (error) {
         console.error("No se pudo conectar a la API", error);
-        grid.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 3rem; background: rgba(220, 38, 38, 0.05); border-radius: 16px; border: 1px solid rgba(220, 38, 38, 0.2);">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">🔌</div>
-                <h3 style="color: #fca5a5; margin-bottom: 1rem; font-family: 'Outfit';">Servidor Backend Apagado</h3>
-                <p style="color: var(--text-secondary);">No nos logramos comunicar con la base de datos.<br>Por favor, asegúrate de correr tu proyecto <strong>BackendApplication</strong> desde NetBeans (Puerto 8080).</p>
-            </div>
-        `;
+        // ... error message ...
     }
 }
+
+// Función global para manejar el cambio de color
+window.handleColorChange = (select, id) => {
+    const customInput = document.getElementById(`custom-color-${id}`);
+    if (select.value === 'Otro') {
+        customInput.style.display = 'block';
+        customInput.focus();
+    } else {
+        customInput.style.display = 'none';
+    }
+};

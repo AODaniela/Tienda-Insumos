@@ -21,7 +21,6 @@ body {
 }
 
 h1, h2, h3 { font-family: 'Outfit', sans-serif; }
-.logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; letter-spacing: 1px; color: #ffffff;}
 
 /* 1. GLASSMORPHISM NAVBAR */
 .glass-nav {
@@ -36,7 +35,11 @@ h1, h2, h3 { font-family: 'Outfit', sans-serif; }
     display: flex; justify-content: space-between; align-items: center;
     max-width: 1200px; margin: 0 auto; padding: 1.2rem 2rem;
 }
-.logo span { color: #ffffff; }
+.auth-buttons { display: flex; gap: 1rem; align-items: center; }
+.btn-outline { background: transparent; border: 1px solid var(--glass-border); color: var(--text-primary); padding: 0.5rem 1.2rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
+.btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+.btn-primary-small { background: var(--accent); color: #fff; padding: 0.5rem 1.2rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2); }
+.btn-primary-small:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(99, 102, 241, 0.4); }
 #main-nav a { 
     text-decoration: none; color: var(--text-primary); 
     margin-left: 2.5rem; font-size: 0.95rem; font-weight: 500; 
@@ -55,14 +58,14 @@ h1, h2, h3 { font-family: 'Outfit', sans-serif; }
     background-attachment: fixed;
 }
 .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 2rem; }
-.hero-content h2 { 
-    font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; 
-    line-height: 1.1; margin-bottom: 1.5rem; 
-    background: linear-gradient(to right, #fff, #a5b4fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.hero-title { 
+    font-family: 'Dancing Script', cursive; 
+    font-size: clamp(3.5rem, 8vw, 6rem); font-weight: 700; 
+    line-height: 1.1; margin-bottom: 1rem; 
+    color: #ffffff;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
-.hero-content p { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2.5rem; line-height: 1.6; }
+.hero-subtitle { font-size: 1.1rem; color: var(--text-primary); margin-bottom: 2.5rem; line-height: 1.6; max-width: 650px; margin-inline: auto; text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
 
 .btn-primary {
     display: inline-block; background: var(--accent); color: #fff; 
@@ -91,8 +94,16 @@ h1, h2, h3 { font-family: 'Outfit', sans-serif; }
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
 /* 3. PRODUCT CATALOG GRID */
-.catalogo-section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
-.section-title { font-size: 2.5rem; margin-bottom: 3rem; text-align: center; }
+.catalogo-section { 
+    padding: 8rem 0; 
+    background: linear-gradient(rgba(11, 15, 25, 0.82), rgba(11, 15, 25, 0.82)), url('./bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    border-top: 1px solid var(--glass-border);
+}
+.section-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.section-title { font-size: 3rem; margin-bottom: 4rem; text-align: center; letter-spacing: -0.02em; }
 
 .grid-container {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;
@@ -108,11 +119,25 @@ h1, h2, h3 { font-family: 'Outfit', sans-serif; }
     border-color: rgba(99, 102, 241, 0.5); 
     box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
-.product-img-placeholder { 
-    height: 180px; background: rgba(255,255,255,0.02); 
-    border-radius: 12px; margin-bottom: 1.5rem; 
-    display: flex; justify-content: center; align-items: center; 
-    font-size: 3rem; color: var(--glass-border); 
+.product-img-container { 
+    height: 200px; 
+    background: rgba(255,255,255,0.02); 
+    border-radius: 12px; 
+    margin-bottom: 1.5rem; 
+    overflow: hidden; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    border: 1px solid var(--glass-border);
+}
+.product-img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.product-card:hover .product-img { 
+    transform: scale(1.08); 
 }
 .product-info h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: #fff;}
 .product-info .cat { color: var(--accent); font-size: 0.75rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 0.8rem; display: block; }
@@ -128,3 +153,45 @@ h1, h2, h3 { font-family: 'Outfit', sans-serif; }
 .btn-add:hover { background: var(--accent); color: white;}
 
 footer { text-align: center; padding: 3rem; color: var(--text-secondary); font-size: 0.9rem; border-top: 1px solid var(--glass-border); margin-top: 4rem; }
+
+/* Color Selector Styles */
+.color-selector {
+    margin-bottom: 1rem;
+}
+
+.color-dropdown {
+    background-color: #1a1e2e; /* Solid dark background */
+    color: #ffffff;
+    border: 1px solid var(--glass-border);
+    padding: 0.6rem;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.color-dropdown option {
+    background-color: #1a1e2e; /* Ensure options have the same dark background */
+    color: #ffffff;
+    padding: 10px;
+}
+
+.custom-color-input {
+    width: 100%;
+    margin-top: 0.8rem;
+    background: var(--glass-bg);
+    color: #fff;
+    border: 1px solid var(--glass-border);
+    padding: 0.6rem;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+.custom-color-input:focus {
+    border-color: var(--accent);
+}

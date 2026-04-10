@@ -22,14 +22,18 @@ public class Producto {
     @Column(name = "precio")
     private Double precio;
 
+    @Column(name = "imagen", length = 255)
+    private String imagen;
+
     public Producto() {}
 
-    public Producto(String idReferencia, String nombre, String categoria, String color, Double precio) {
+    public Producto(String idReferencia, String nombre, String categoria, String color, Double precio, String imagen) {
         this.idReferencia = idReferencia;
         this.nombre = nombre;
         this.categoria = categoria;
         this.color = color;
         this.precio = precio;
+        this.imagen = imagen;
     }
 
     // Getters and Setters
@@ -47,4 +51,7 @@ public class Producto {
 
     public Double getPrecio() { return precio; }
     public void setPrecio(Double precio) { this.precio = precio; }
+
+    public String getImagen() { return imagen; }
+    public void setImagen(String imagen) { this.imagen = imagen; }
 }
