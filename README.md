@@ -4,6 +4,10 @@ Sistema de gestión y catálogo exclusivo para una tienda de insumos textiles. E
 
 ## 🚀 Vista Previa del Proyecto
 
+### Pantalla de Inicio
+![Inicio](./screenshots/inicio.png)
+
+### Catálogo Premium
 ![Catálogo Premium](./screenshots/catalogo.png)
 
 ### Características Destacadas:
