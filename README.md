@@ -2,23 +2,12 @@
 
 Sistema de gestión y catálogo exclusivo para una tienda de insumos textiles. Este proyecto integra un backend robusto en Spring Boot con un frontend moderno y dinámico diseñado para ofrecer una experiencia de usuario premium.
 
-## 🚀 Vista Previa del Proyecto
+## 🚀 Vista Previa del Proyecto (Actualizada)
 
-### Pantalla de Inicio
-![Inicio](./screenshots/inicio.png)
+### Interfaz Completa y Catálogo Interactivos
+La plataforma cuenta con un diseño unificado de alta fidelidad, con cabecera funcional, selectores dinámicos de color/tipo y precios actualizados en tiempo real.
 
-### Cabecera y Navegación (Corregida)
-![Cabecera](./screenshots/cabecera_fija.png)
-
-### Catálogo Premium e Interactividad
-El catálogo permite seleccionar tipos de productos con actualización de precios en tiempo real.
-![Cremallera Dinámica](./screenshots/cremallera_dinamica.png)
-
-### Características Destacadas:
-*   **Diseño Premium**: Interfaz moderna con Glassmorphism y efectos de sombreado azul profundo sobre texturas de tela.
-*   **Catálogo Dinámico**: Conexión en tiempo real con base de datos MySQL para mostrar productos actualizados.
-*   **Gestión Detallada**: Los hilos cuentan con selectores de color dinámicos y soporte para tonos personalizados.
-*   **Interacción Fluida**: Micro-animaciones y efectos de transición para una navegación suave.
+![Evidencia Final](./screenshots/evidencia_final.png)
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -27,18 +16,14 @@ El catálogo permite seleccionar tipos de productos con actualización de precio
 *   **Base de Datos**: MySQL 9.5+.
 *   **Diseño**: Google Fonts (Dancing Script, Outfit, Inter).
 
-## 📸 Evidencia de Funcionalidad
+## 📸 Características Destacadas
 
-### Selector de Color Inteligente
-Los hilos permiten elegir colores básicos o especificar un número de tono exacto mediante un campo dinámico:
-![Selector de Color](./screenshots/selector_color.png)
+*   **Diseño Premium**: Interfaz moderna con Glassmorphism y efectos de sombreado azul profundo.
+*   **Catálogo Dinámico**: Conexión en tiempo real con base de datos MySQL.
+*   **Interactividad en Precios**: El precio de las cremalleras se ajusta automáticamente según el tipo seleccionado (Metálica vs Estándar).
+*   **Personalización**: Selectores de color en Hilos, Hilazas y Cintas con opción de entrada manual.
 
 ## ⚙️ Instrucciones para Ejecución Local
-
-### Requisitos previos:
-*   Java JDK 17+
-*   MySQL Server
-*   Node.js & npm
 
 ### Pasos:
 1.  **Base de Datos**: Importar el archivo `database/schema.sql` en MySQL.
