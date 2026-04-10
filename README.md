@@ -1,4 +1,4 @@
-# Lumina Textiles - Insumos Premium
+# Insumos Textilea - Premium
 
 Sistema de gestión y catálogo exclusivo para una tienda de insumos textiles. Este proyecto integra un backend robusto en Spring Boot con un frontend moderno y dinámico diseñado para ofrecer una experiencia de usuario premium.
 
@@ -12,7 +12,7 @@ Sistema de gestión y catálogo exclusivo para una tienda de insumos textiles. E
 *   **Gestión Detallada**: Los hilos cuentan con selectores de color dinámicos y soporte para tonos personalizados.
 *   **Interacción Fluida**: Micro-animaciones y efectos de transición para una navegación suave.
 
-## 🛠️ Tecnologías Utilizamos
+## 🛠️ Tecnologías Utilizadas
 
 *   **Frontend**: JavaScript (ES6+), Vite, HTML5, Vanilla CSS3.
 *   **Backend**: Java, Spring Boot, Spring Data JPA, Hibernate.
