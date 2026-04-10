@@ -60,6 +60,10 @@ async function fetchProducts() {
                         <input type="text" id="custom-color-${p.idReferencia}" class="custom-color-input" placeholder="${placeholder}" style="display: none;">
                     </div>
                 `;
+            } else if (p.categoria === 'Botones') {
+                colorDisplay = `<p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:1rem;">Color: ${p.color || 'Perla'}</p>`;
+            } else if (p.categoria === 'Tijeras') {
+                colorDisplay = `<p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:1rem;">${p.color || 'Acero'}</p>`;
             } else {
                 colorDisplay = `<p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:1rem;">Atributo: ${p.color || 'Estándar'}</p>`;
             }
