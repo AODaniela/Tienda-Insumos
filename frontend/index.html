@@ -12,15 +12,19 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <header>
-        <nav class="glass-nav">
+    <header class="glass-nav">
+        <div class="nav-container">
+            <div class="auth-buttons">
+                <a href="#register" class="btn-primary-small">Registrarse</a>
+                <a href="#login" class="btn-outline">Iniciar Sesión</a>
+            </div>
             <div class="logo">Insumos Textilea</div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#catalogo">Catálogo</a></li>
-                <li class="cart-icon">🛒 <span id="cart-count">0</span></li>
-            </ul>
-        </nav>
+            <nav id="main-nav">
+                <a href="#inicio">Inicio</a>
+                <a href="#catalogo">Catálogo</a>
+                <a href="#carrito" class="cart-btn">🛒 <span id="cart-count">0</span></a>
+            </nav>
+        </div>
     </header>
 
     <main>

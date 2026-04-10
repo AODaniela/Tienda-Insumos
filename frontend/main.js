@@ -34,29 +34,48 @@ async function fetchProducts() {
             card.className = 'product-card animate-up';
             card.style.animationDelay = `${index * 0.1}s`;
 
-            // Formateo de precio a COP (ej. 2700 -> $2.700)
-            const formattedPrice = new Intl.NumberFormat('es-CO', {
-                style: 'currency',
-                currency: 'COP',
-                minimumFractionDigits: 0
-            }).format(p.precio || 0);
+            // Formateo de precio inicial
+            const formatter = new Intl.NumberFormat('es-CO', {
+                style: 'currency', currency: 'COP', minimumFractionDigits: 0
+            });
+            const formattedPrice = formatter.format(p.precio || 0);
 
-            // Lógica para el selector de color en Hilos
-            let colorDisplay = `<p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:1rem;">Color: ${p.color || 'Varios'}</p>`;
+            // 1. Selector de COLOR (Común para Hilos, Cremalleras, Hilazas, Cintas)
+            let colorDisplay = '';
+            const categoriesWithColor = ['Hilos', 'Cremalleras', 'Hilazas', 'Cintas de tela'];
             
-            if (p.categoria === 'Hilos') {
+            if (categoriesWithColor.includes(p.categoria)) {
+                const placeholder = p.categoria === 'Hilos' ? 'Indicar número de hilo' : 'Indicar color';
                 colorDisplay = `
                     <div class="color-selector">
-                        <label style="font-size: 0.8rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem;">Seleccionar Color:</label>
+                        <label style="font-size: 0.8rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem;">Color:</label>
                         <select class="color-dropdown" onchange="handleColorChange(this, '${p.idReferencia}')">
                             <option value="Blanco">Blanco</option>
                             <option value="Negro">Negro</option>
                             <option value="Rojo">Rojo</option>
                             <option value="Azul">Azul</option>
                             <option value="Amarillo">Amarillo</option>
-                            <option value="Otro">Otro (Indicar número)</option>
+                            <option value="Otro">Otro (Escribir...)</option>
                         </select>
-                        <input type="text" id="custom-color-${p.idReferencia}" class="custom-color-input" placeholder="Indicar número de hilo" style="display: none;">
+                        <input type="text" id="custom-color-${p.idReferencia}" class="custom-color-input" placeholder="${placeholder}" style="display: none;">
+                    </div>
+                `;
+            } else {
+                colorDisplay = `<p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:1rem;">Atributo: ${p.color || 'Estándar'}</p>`;
+            }
+
+            // 2. Selector de TIPO (Solo para Cremalleras)
+            let typeDisplay = '';
+            if (p.categoria === 'Cremalleras') {
+                typeDisplay = `
+                    <div class="type-selector" style="margin-bottom: 1rem;">
+                        <label style="font-size: 0.8rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem;">Tipo de Cremallera:</label>
+                        <select class="color-dropdown" onchange="handleTypeChange(this, '${p.idReferencia}')">
+                            <option value="2000">Cremallera Invisible</option>
+                            <option value="2000">Cremallera Nylon</option>
+                            <option value="2000">Cremallera Plástica</option>
+                            <option value="12000">Cremallera Metálica</option>
+                        </select>
                     </div>
                 `;
             }
@@ -68,9 +87,10 @@ async function fetchProducts() {
                 <div class="product-info">
                     <span class="cat">${p.categoria || 'Textil Premium'}</span>
                     <h3>${p.nombre || 'Insumo sin nombre'}</h3>
+                    ${typeDisplay}
                     ${colorDisplay}
                     <div class="product-footer">
-                        <span class="price">${formattedPrice}</span>
+                        <span class="price" id="price-${p.idReferencia}">${formattedPrice}</span>
                         <button class="btn-add">Agregar al 🛒</button>
                     </div>
                 </div>
@@ -92,4 +112,14 @@ window.handleColorChange = (select, id) => {
     } else {
         customInput.style.display = 'none';
     }
+};
+
+// Función para manejar el cambio de tipo de cremallera y actualizar precio
+window.handleTypeChange = (select, id) => {
+    const priceElement = document.getElementById(`price-${id}`);
+    const priceValue = parseInt(select.value);
+    const formattedPrice = new Intl.NumberFormat('es-CO', {
+        style: 'currency', currency: 'COP', minimumFractionDigits: 0
+    }).format(priceValue);
+    priceElement.textContent = formattedPrice;
 };

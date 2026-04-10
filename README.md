@@ -7,8 +7,12 @@ Sistema de gestión y catálogo exclusivo para una tienda de insumos textiles. E
 ### Pantalla de Inicio
 ![Inicio](./screenshots/inicio.png)
 
-### Catálogo Premium
-![Catálogo Premium](./screenshots/catalogo.png)
+### Cabecera y Navegación (Corregida)
+![Cabecera](./screenshots/cabecera_fija.png)
+
+### Catálogo Premium e Interactividad
+El catálogo permite seleccionar tipos de productos con actualización de precios en tiempo real.
+![Cremallera Dinámica](./screenshots/cremallera_dinamica.png)
 
 ### Características Destacadas:
 *   **Diseño Premium**: Interfaz moderna con Glassmorphism y efectos de sombreado azul profundo sobre texturas de tela.
