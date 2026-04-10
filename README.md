@@ -2,12 +2,15 @@
 
 Sistema de gestión y catálogo exclusivo para una tienda de insumos textiles. Este proyecto integra un backend robusto en Spring Boot con un frontend moderno y dinámico diseñado para ofrecer una experiencia de usuario premium.
 
-## 🚀 Vista Previa del Proyecto (Actualizada)
+## 🚀 Vista Previa del Proyecto
 
-### Interfaz Completa y Catálogo Interactivos
-La plataforma cuenta con un diseño unificado de alta fidelidad, con cabecera funcional, selectores dinámicos de color/tipo y precios actualizados en tiempo real.
+### Pantalla de Inicio (Branding y Navegación)
+Interfaz principal con diseño minimalista, tipografía elegante y navegación funcional integrada.
+![Inicio](./screenshots/inicio.png)
 
-![Evidencia Final](./screenshots/evidencia_final.png)
+### Catálogo Interactivo (Colección Exclusiva)
+Sección de productos con fondo de tela azul profundo, sombras suaves y selectores dinámicos de color y tipo.
+![Catálogo](./screenshots/catalogo.png)
 
 ## 🛠️ Tecnologías Utilizadas
 
