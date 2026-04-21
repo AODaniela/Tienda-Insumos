@@ -127,3 +127,62 @@ window.handleTypeChange = (select, id) => {
     }).format(priceValue);
     priceElement.textContent = formattedPrice;
 };
+
+// --- Lógica del Módulo de Registro ---
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('register-modal');
+    const btnOpen = document.getElementById('btn-register-open');
+    const btnClose = document.getElementById('btn-register-close');
+    const form = document.getElementById('register-form');
+    const msgDiv = document.getElementById('reg-message');
+
+    if (btnOpen && modal) {
+        btnOpen.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.remove('hidden');
+        });
+    }
+
+    if (btnClose && modal) {
+        btnClose.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            msgDiv.textContent = '';
+        });
+    }
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            msgDiv.textContent = 'Registrando...';
+            msgDiv.style.color = 'var(--text-secondary)';
+
+            const cargo = document.querySelector('input[name="cargo"]:checked').value;
+            const nombre = document.getElementById('reg-nombre').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-pass').value;
+
+            try {
+                const response = await fetch('http://localhost:8080/api/usuarios/registro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nombre, email, password, cargo })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok) {
+                    msgDiv.textContent = '¡Registro exitoso!';
+                    msgDiv.style.color = '#4ade80'; // verde
+                    form.reset();
+                    setTimeout(() => modal.classList.add('hidden'), 2000);
+                } else {
+                    msgDiv.textContent = data.mensaje || 'Error al registrar';
+                    msgDiv.style.color = '#f87171'; // rojo
+                }
+            } catch (err) {
+                msgDiv.textContent = 'Error de red. Verifica que el backend esté encendido.';
+                msgDiv.style.color = '#f87171'; // rojo
+            }
+        });
+    }
+});
