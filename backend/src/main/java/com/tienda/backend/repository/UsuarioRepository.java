@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    // Método para validar existencia por email si es necesario
     boolean existsByEmail(String email);
+    java.util.Optional<Usuario> findByEmail(String email);
 }

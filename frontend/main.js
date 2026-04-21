@@ -186,3 +186,74 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// --- Lógica del Módulo de Login ---
+document.addEventListener('DOMContentLoaded', () => {
+    const loginModal = document.getElementById('login-modal');
+    const btnLoginOpen = document.getElementById('btn-login-open');
+    const btnLoginClose = document.getElementById('btn-login-close');
+    const loginForm = document.getElementById('login-form');
+    const loginMsg = document.getElementById('login-message');
+    const welcomeBanner = document.getElementById('user-welcome-banner');
+    const cargoBadge = document.getElementById('user-cargo-badge');
+    const welcomeText = document.getElementById('user-welcome-text');
+
+    if (btnLoginOpen) {
+        btnLoginOpen.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.remove('hidden');
+        });
+    }
+
+    if (btnLoginClose) {
+        btnLoginClose.addEventListener('click', () => {
+            loginModal.classList.add('hidden');
+            loginMsg.textContent = '';
+        });
+    }
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            loginMsg.textContent = 'Verificando...';
+            loginMsg.style.color = 'var(--text-secondary)';
+
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-pass').value;
+
+            try {
+                const response = await fetch('http://localhost:8080/api/usuarios/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok) {
+                    const cargo = data.cargo || 'cliente';
+                    const nombre = data.nombre || 'Usuario';
+
+                    // Mostrar badge de cargo y saludo centrado en el navbar
+                    cargoBadge.textContent = cargo.charAt(0).toUpperCase() + cargo.slice(1);
+                    cargoBadge.className = 'cargo-badge ' + cargo.toLowerCase();
+                    welcomeText.textContent = '¡Bienvenido/a, ' + nombre + '!';
+                    welcomeBanner.classList.remove('hidden');
+
+                    // Ocultar botones de Registrarse / Iniciar Sesión
+                    document.querySelector('.auth-buttons').style.display = 'none';
+
+                    // Cerrar el modal tras 1 segundo
+                    loginForm.reset();
+                    setTimeout(() => loginModal.classList.add('hidden'), 1000);
+                } else {
+                    loginMsg.textContent = data.mensaje || 'Credenciales incorrectas';
+                    loginMsg.style.color = '#f87171';
+                }
+            } catch (err) {
+                loginMsg.textContent = 'Error de red. Verifica que el backend esté encendido.';
+                loginMsg.style.color = '#f87171';
+            }
+        });
+    }
+});
