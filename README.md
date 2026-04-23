@@ -2,7 +2,7 @@
 
 Sistema de gestión y catálogo exclusivo para una tienda de insumos textiles. Este proyecto integra un backend robusto en Spring Boot con un frontend moderno y dinámico diseñado para ofrecer una experiencia de usuario premium.
 
-## 🚀 Vista Previa del Proyecto
+## Vista Previa del Proyecto
 
 ### Pantalla de Inicio (Branding y Navegación)
 Interfaz principal con diseño minimalista, tipografía elegante y navegación funcional integrada.
@@ -12,21 +12,21 @@ Interfaz principal con diseño minimalista, tipografía elegante y navegación f
 Sección de productos con fondo de tela azul profundo, sombras suaves y selectores dinámicos de color y tipo.
 ![Catálogo](./screenshots/catalogo.png)
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 *   **Frontend**: JavaScript (ES6+), Vite, HTML5, Vanilla CSS3.
 *   **Backend**: Java, Spring Boot, Spring Data JPA, Hibernate.
 *   **Base de Datos**: MySQL 9.5+.
 *   **Diseño**: Google Fonts (Dancing Script, Outfit, Inter).
 
-## 📸 Características Destacadas
+## Características Destacadas
 
 *   **Diseño Premium**: Interfaz moderna con Glassmorphism y efectos de sombreado azul profundo.
 *   **Catálogo Dinámico**: Conexión en tiempo real con base de datos MySQL.
 *   **Interactividad en Precios**: El precio de las cremalleras se ajusta automáticamente según el tipo seleccionado (Metálica vs Estándar).
 *   **Personalización**: Selectores de color en Hilos, Hilazas y Cintas con opción de entrada manual.
 
-## ⚙️ Instrucciones para Ejecución Local
+## Instrucciones para Ejecución Local
 
 ### Pasos:
 1.  **Base de Datos**: Importar el archivo `database/schema.sql` en MySQL.
