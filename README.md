@@ -1,4 +1,4 @@
-# Insumos Textilea - Premium
+# Insumos Textilea
 
 Sistema de gestión y catálogo exclusivo para una tienda de insumos textiles. Este proyecto integra un backend robusto en Spring Boot con un frontend moderno y dinámico diseñado para ofrecer una experiencia de usuario premium.
 
